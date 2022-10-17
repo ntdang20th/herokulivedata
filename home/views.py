@@ -18,7 +18,7 @@ async def home(request):
             }
         )
         time.sleep(1)
-    return render(request, 'home.html')
+    return render(request, 'home_sensor.html')
 
 from django.http import JsonResponse
 
@@ -26,3 +26,4 @@ def generate_student_data(request):
     total = request.GET.get('total')
     CreateStudentsThread(int(total)).start()
     return JsonResponse({'status': 200})
+

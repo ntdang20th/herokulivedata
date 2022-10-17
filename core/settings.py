@@ -31,8 +31,11 @@ ALLOWED_HOSTS = ['127.0.0.1','livedatawebsocket.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'home',
+    'livedata',
     'channels',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -109,8 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
+AUTH_USER_MODEL = 'auth.User'
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -134,3 +136,25 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+JAZZMIN_SETTINGS = {
+    # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
+    "login_logo": None,
+    # Logo to use for login form in dark themes (defaults to login_logo)
+    "login_logo_dark": None,
+
+    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "AGU - Falling Detection",
+
+    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "AGU - Falling Detection",
+
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "AGU - Falling Detection",
+
+    # Welcome text on the login screen
+    "welcome_sign": "Welcome to AGU - Falling Detection",
+}
+
+
