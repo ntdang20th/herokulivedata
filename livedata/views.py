@@ -77,6 +77,13 @@ def ResponesData(request):
         gyroscope=gyroscope_sensor,
         rotation=rotation_sensor
     )
+    channel_layer = get_channel_layer()
+    async_to_sync(channel_layer.group_send)(
+        'sensor_consumer_group', {
+            'type': 'send_rawdata',
+            'value': json.dumps(data),
+        }
+    )
 
     # print(rawdata)
     # connection.open()
