@@ -43,7 +43,7 @@ class CreateSensorThread(threading.Thread):
 
                 channel_layer = get_channel_layer()
                 data = {'date': str(datetime.datetime.now()), 'UUID': str(uuid.uuid4()), 'Touch': 'no touch detected', 'data': [acceleration_sensor.getJson(), gyroscope_sensor.getJson(), rotation_sensor.getJson()]}
-                print(data)
+                #print(data)
 
                 async_to_sync(channel_layer.group_send)(
                     'sensor_consumer_group', {
