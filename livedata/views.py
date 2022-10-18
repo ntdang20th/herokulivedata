@@ -78,13 +78,13 @@ def ResponesData(request):
         rotation=rotation_sensor
     )
 
-    channel_layer = get_channel_layer()
-    async_to_sync(channel_layer.group_send)(
-        'sensor_consumer_group', {
-            'type': 'send_rawdata',
-            'value': json.dumps(rawdata),
-        }
-    )
+    # channel_layer = get_channel_layer()
+    # async_to_sync(channel_layer.group_send)(
+    #     'sensor_consumer_group', {
+    #         'type': 'send_rawdata',
+    #         'value': json.dumps(rawdata),
+    #     }
+    # )
 
     # print(rawdata)
     # connection.open()
