@@ -1,8 +1,9 @@
 import threading
+import datetime
 import time
 import uuid
 from channels.layers import get_channel_layer
-from .models import *
+from device.models import *
 from faker import Faker
 from asgiref.sync import async_to_sync
 import json

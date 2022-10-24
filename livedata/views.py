@@ -1,15 +1,8 @@
 from django.shortcuts import render
-from asgiref.sync import async_to_sync
-from channels.layers import get_channel_layer
-from asgiref.sync import async_to_sync
-import json
-import time
 from .thread import *
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.core.mail import send_mail
-from django.conf import settings
 from django.core import mail
 
 connection = mail.get_connection()
@@ -77,14 +70,6 @@ def ResponesData(request):
         gyroscope=gyroscope_sensor,
         rotation=rotation_sensor
     )
-
-    # channel_layer = get_channel_layer()
-    # async_to_sync(channel_layer.group_send)(
-    #     'sensor_consumer_group', {
-    #         'type': 'send_rawdata',
-    #         'value': json.dumps(rawdata),
-    #     }
-    # )
 
     # print(rawdata)
     # connection.open()

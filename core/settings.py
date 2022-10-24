@@ -33,7 +33,10 @@ CSRF_TRUSTED_ORIGINS = ['https://livedatawebsocket.herokuapp.com']
 
 INSTALLED_APPS = [
     'jazzmin',
-    'home',
+    'address',
+    'doctor',
+    'patient',
+    'device',
     'livedata',
     'channels',
     'rest_framework',
@@ -61,7 +64,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
