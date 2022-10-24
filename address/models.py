@@ -24,3 +24,6 @@ class ShareAddress(models.Model):
     ward = models.ForeignKey(Ward, on_delete=models.CASCADE, blank=True, null=True)
     district = models.ForeignKey(District, on_delete=models.CASCADE, blank=True, null=True)
     province = models.ForeignKey(Province, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return self.address
