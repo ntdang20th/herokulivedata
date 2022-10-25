@@ -12,10 +12,25 @@ connection = mail.get_connection()
 async def home_sensor(request):
     return render(request, 'home_sensor.html')
 
+def home(request):
+    return render(request, 'home.html')
+
 
 def generate_sensor_data(request):
     total = request.GET.get('total')
     CreateSensorThread(int(total)).start()
+    return JsonResponse({'status': 200})
+
+def generate_sensor1(request):
+    StartSensor1().start()
+    return JsonResponse({'status': 200})
+
+def generate_sensor2(request):
+    StartSensor2().start()
+    return JsonResponse({'status': 200})
+
+def generate_sensor3(request):
+    StartSensor3().start()
     return JsonResponse({'status': 200})
 
 from django.views.decorators.csrf import csrf_exempt

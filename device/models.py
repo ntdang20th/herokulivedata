@@ -67,7 +67,11 @@ class Rawdata(models.Model):
     def save(self, *args, **kwargs):
         channel_layer = get_channel_layer()
         sensor = [self.acceleration.getJson(), self.gyroscope.getJson(), self.rotation.getJson()]
-        data = {'date':  str(self.date), 'UUID': self.device.__str__(), 'Touch': self.touch_status.__str__(), 'data': sensor}
+        patient = self.device.patient
+        data = {'date':  str(self.date),
+                'UUID': self.device.__str__(),
+                'Touch': self.touch_status.__str__(),
+                'data': sensor}
         async_to_sync(channel_layer.group_send)(
             'sensor_consumer_group', {
                 'type': 'send_rawdata',
