@@ -17,7 +17,7 @@
     }
 
     .table {
-      font-size: 12px;
+      font-size: 13px;
     }
   </style>
 
@@ -94,21 +94,21 @@
                   <tbody>
                     <tr>
                       <td>${acc.name}</td>
-                      <td><code>${acc.valueX}</code></td>
-                      <td><code>${acc.valueY}</code></td>
-                      <td><code>${acc.valueZ}</code></td>
+                      <td><code>${acc.valueX.toFixed(2)}</code></td>
+                      <td><code>${acc.valueY.toFixed(2)}</code></td>
+                      <td><code>${acc.valueZ.toFixed(2)}</code></td>
                     </tr>
                     <tr>
                       <td>${gyr.name}</td>
-                      <td><code>${gyr.valueX}</code></td>
-                      <td><code>${gyr.valueY}</code></td>
-                      <td><code>${gyr.valueZ}</code></td>
+                      <td><code>${gyr.valueX.toFixed(2)}</code></td>
+                      <td><code>${gyr.valueY.toFixed(2)}</code></td>
+                      <td><code>${gyr.valueZ.toFixed(2)}</code></td>
                     </tr>
                     <tr>
                       <td>${rot.name}</td>
-                      <td><code>${rot.rotationX}</code></td>
-                      <td><code>${rot.rotationY}</code></td>
-                      <td><code>${rot.rotationZ}</code></td>
+                      <td><code>${rot.rotationX.toFixed(2)}</code></td>
+                      <td><code>${rot.rotationY.toFixed(2)}</code></td>
+                      <td><code>${rot.rotationZ.toFixed(2)}</code></td>
                     </tr>
                   </tbody>
                 </table>
