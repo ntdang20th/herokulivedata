@@ -21,7 +21,7 @@ class Acceleration(models.Model):
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
 
     def getJson(self):
-        data = {"name": "Accelaration", "valueX": self.valueX, "valueY": self.valueY, "valueZ": self.valueZ, "unit": self.unit.__str__()}
+        data = {'name': 'Acceleration', 'valueX': self.valueX, 'valueY': self.valueY, 'valueZ': self.valueZ, 'unit': self.unit.__str__()}
         return data
 
 
@@ -32,7 +32,7 @@ class Gyroscope(models.Model):
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
 
     def getJson(self):
-        data = {"name": "Gyroscope", "valueX": self.valueX, "valueY": self.valueY, "valueZ": self.valueZ, "unit": self.unit.__str__()}
+        data = {'name': 'Gyroscope', 'valueX': self.valueX, 'valueY': self.valueY, 'valueZ': self.valueZ, 'unit': self.unit.__str__()}
         return data
 
 
@@ -43,7 +43,7 @@ class Rotation(models.Model):
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
 
     def getJson(self):
-        data = {"name": "Rotation", "rotationX": self.rotationX, "rotationY": self.rotationY, "rotationZ": self.rotationZ, "unit": self.unit.__str__()}
+        data = {'name': 'RotationSensor', 'rotationX': self.rotationX, 'rotationY': self.rotationY, 'rotationZ': self.rotationZ, 'unit': self.unit.__str__()}
         return data
 
 

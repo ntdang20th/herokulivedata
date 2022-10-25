@@ -82,11 +82,16 @@ class StartSensor1(threading.Thread):
                 )
                 data = {'date': str(datetime.datetime.now()), 'UUID': 'd1e231bc-8bef-47f9-8383-70b51310a1d9', 'Touch': 'no touch detected', 'data': [acceleration_sensor.getJson(), gyroscope_sensor.getJson(), rotation_sensor.getJson()]}
                 print('----------------------------')
-                print(data)
-
+                payload_json = json.dumps(data, indent=4)
+                print(payload_json)
+                headers = {
+                    "accept": "text/plain, */*; q=0.01",
+                    "accept-language": "en-US,en;q=0.9",
+                    "content-type": "application/json; charset=UTF-8"
+                }
                 url = 'https://livedatawebsocket.herokuapp.com/sensor/post/'
 
-                x = requests.post(url, json=data)
+                x = requests.post(url, verify=True, data=payload_json, headers=headers)
 
                 print(x)
                 print('----------------------------')

@@ -41,7 +41,6 @@ from django.views.decorators.csrf import csrf_exempt
 @api_view(['POST'])
 def ResponesData(request):
     data = request.data
-    print(data)
     current_time = data['date']
 
     try:
@@ -71,9 +70,9 @@ def ResponesData(request):
         unit=Unit.objects.get(pk=2)
     )
     rotation_sensor = Rotation.objects.create(
-        rotationX=rotation['RotationX'],
-        rotationY=rotation['RotationY'],
-        rotationZ=rotation['RotationZ'],
+        rotationX=rotation['rotationX'],
+        rotationY=rotation['rotationY'],
+        rotationZ=rotation['rotationZ'],
         unit=Unit.objects.get(pk=3)
     )
 
@@ -83,8 +82,6 @@ def ResponesData(request):
     except ValueError as err:
         date = datetime.datetime.now()
         print(err)
-
-    print(date)
 
     rawdata = Rawdata.objects.create(
         date=date,
