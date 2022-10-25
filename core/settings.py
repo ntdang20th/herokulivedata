@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-))15@bx@h7d8_7sr@s&g*)e5#fk)7&^*cx-8j8apen^7*1(c(0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1','livedatawebsocket.herokuapp.com']
 
