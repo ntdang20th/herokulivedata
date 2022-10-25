@@ -26,4 +26,4 @@ class ShareAddress(models.Model):
     province = models.ForeignKey(Province, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.address
+        return self.address + ", " + self.ward.__str__() + ", " + self.district.__str__() + ", " + self.province.__str__()

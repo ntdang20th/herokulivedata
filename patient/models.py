@@ -39,6 +39,12 @@ class Patient(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     patient_info = models.ForeignKey(PatientInfo, on_delete=models.CASCADE)
 
+    def getJson(self):
+        info = self.patient_info
+        address = info.share_address
+        data = {"id": self.id, "fullname": self.patient_info.__str__(), "address": info.share_address.__str__()}
+        return data
+
 class HasPatientFamiliar(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     familiar = models.ForeignKey(Familiar, on_delete=models.CASCADE)

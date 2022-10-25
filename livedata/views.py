@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render
 from .thread import *
 from django.http import JsonResponse
@@ -34,6 +36,7 @@ def generate_sensor3(request):
     return JsonResponse({'status': 200})
 
 from django.views.decorators.csrf import csrf_exempt
+
 @csrf_exempt
 @api_view(['POST'])
 def ResponesData(request):
@@ -46,7 +49,10 @@ def ResponesData(request):
     except Device.DoesNotExist:
         device = Device.objects.create(uuid=data['UUID'], description='unknown device')
 
-    touch = TouchStatus.objects.get(status_name=data['Touch'])
+    try:
+        touch = TouchStatus.objects.get(status_name=data['Touch'])
+    except TouchStatus.NotExists:
+        touch = TouchStatus.objects.create(status_name=data['Touch'], description='unknown device')
 
     acceleration = data['data'][0]
     gyroscope = data['data'][1]
@@ -73,12 +79,15 @@ def ResponesData(request):
 
     #create new rawdata
     try:
-        date = datetime.datetime.strptime(current_time, 'YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format.')
+        date = datetime.datetime.strptime(current_time, 'YYYY-MM-DD HH:MM:ss')
     except ValueError as err:
+        date = datetime.datetime.now()
         print(err)
 
+    print(date)
+
     rawdata = Rawdata.objects.create(
-        date=current_time,
+        date=date,
         device=device,
         touch_status=touch,
         acceleration=acceleration_sensor,
@@ -86,7 +95,7 @@ def ResponesData(request):
         rotation=rotation_sensor
     )
 
-    # print(rawdata)
+
     # connection.open()
     # send_mail(
     #     'Reply mess!!',

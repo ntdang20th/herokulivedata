@@ -81,13 +81,15 @@ class StartSensor1(threading.Thread):
                     unit=Unit.objects.get(pk=3)
                 )
                 data = {'date': str(datetime.datetime.now()), 'UUID': 'd1e231bc-8bef-47f9-8383-70b51310a1d9', 'Touch': 'no touch detected', 'data': [acceleration_sensor.getJson(), gyroscope_sensor.getJson(), rotation_sensor.getJson()]}
+                print('----------------------------')
                 print(data)
 
                 url = 'https://livedatawebsocket.herokuapp.com/sensor/post/'
 
                 x = requests.post(url, json=data)
 
-                print(x.text)
+                print(x)
+                print('----------------------------')
 
                 time.sleep(1)
         except Exception as e:
