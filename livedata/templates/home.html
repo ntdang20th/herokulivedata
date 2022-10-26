@@ -176,7 +176,7 @@
       //console.log(new_grahp_data)
 
       await new_grahp_data.shift();
-      await new_grahp_data.push(gyr.valueX.toFixed(2));
+      await new_grahp_data.push(parseInt(gyr.valueX));
       grData.data.datasets[0] = new_grahp_data;
       console.log(new_grahp_data);
     }
