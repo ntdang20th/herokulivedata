@@ -34,6 +34,7 @@
   <script>
     const list_UUID = [];
     const list_graph_data = [];
+    const list_chart = [];
     
     var url = 'wss://livedatawebsocket.herokuapp.com/ws/sensor/'
 
@@ -76,6 +77,11 @@
           option:{}
         }
         list_graph_data.push(graphData);
+
+        var ctx = document.getElementById('chart_' + uuid).getContext('2d');
+        var myChart = new Chart(ctx, graphData);
+        list_chart.push(myChart);
+
         var col = `
             <div class = "col col-xl-6" id="`+uuid+`">
 
@@ -162,15 +168,10 @@
     }
 
     async function draw(uuid, gyr){
-      const ctx = document.getElementById('chart_' + uuid).getContext('2d');
-      //console.log(ctx);
-
+    
       var index = list_UUID.indexOf(uuid);
       //console.log(index + "");
       var grData = list_graph_data[index];
-      console.log(grData);
-
-      var myChart = new Chart(ctx, grData);
       
       var new_graph_data = grData.data.datasets[0].data;
       //console.log(new_graph_data)
@@ -178,6 +179,8 @@
       await new_graph_data.shift();
       await new_graph_data.push(parseInt(gyr.valueX));
       grData.data.datasets[0] = new_graph_data;
+
+      list_chart[index].update();
       //console.log(new_graph_data);
     }
 
