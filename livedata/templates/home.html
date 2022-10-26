@@ -31,6 +31,7 @@
     </div>
   </div>
   <script>
+    const list_UUID = [];
     var url = 'wss://livedatawebsocket.herokuapp.com/ws/sensor/'
 
     var socket = new WebSocket(url);
@@ -53,6 +54,18 @@
     }
 
     function addData(data) {
+      uuid = ${data.UUID};
+      if(!list_UUID.includes(uuid)){
+        list_UUID.push(uuid);
+        var col = `
+            <div class = "col col-xl-6" id="`+uuid+`">
+
+            </div>
+        `;
+        document.getElementById('content').innerHTML += html;
+        console.log(col);
+      }
+        
       var acc = data.data[0];
       var gyr = data.data[1];
       var rot = data.data[2];
@@ -61,19 +74,19 @@
         <div class="card">
           <div class="card-body">
             <div class="row">
-              <div class="col-6">
-                <h7 class="card-title"><span class="text-success">Mã BN: </span> test</code></h7>
+              <div class="col-4">
+                <h7 class="card-title"><span class="text-success">Mã BN: </span> test</h7>
                 <br>
-                <h7 class="card-text"><span class="text-success">Họ tên: </span>test</code></h7>
+                <h7 class="card-text"><span class="text-success">Họ tên: </span>test</h7>
                 <br>
-                <h7 class="card-text"><span class="text-success">Đ/c: </span> test</code></h7>
+                <h7 class="card-text"><span class="text-success">Đ/c: </span> test</h7>
               </div>
-              <div class="col-6">
-                <h7 class="card-title"><span class="text-success">UUID: </span> ${data.UUID}</code></h7>
+              <div class="col-8">
+                <h7 class="card-title"><span class="text-success">UUID: </span><code>${data.UUID}</code></h7>
                 <br>
-                <h7 class="card-text"><span class="text-success">Date: </span>${data.date}</code></h7>
+                <h7 class="card-text"><span class="text-success">Date: </span><code>${data.date}</code></h7>
                 <br>
-                <h7 class="card-text"><span class="text-success">Touch: </span> ${data.Touch}</code></h7>
+                <h7 class="card-text"><span class="text-success">Touch: </span><code>${data.Touch}</code></h7>
               </div>
             </div>
 
@@ -126,7 +139,7 @@
 
       </div>
             `
-      document.getElementById('content').innerHTML = html;
+      document.getElementById(uuid).innerHTML = html;
 
     }
 
