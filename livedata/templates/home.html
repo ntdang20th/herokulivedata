@@ -78,9 +78,7 @@
         }
         list_graph_data.push(graphData);
 
-        var ctx = document.getElementById('chart_' + uuid).getContext('2d');
-        var myChart = new Chart(ctx, graphData);
-        list_chart.push(myChart);
+        
 
         var col = `
             <div class = "col col-xl-6" id="`+uuid+`">
@@ -88,6 +86,10 @@
             </div>
         `
 
+        var ctx = document.getElementById('chart_' + uuid).getContext('2d');
+        var myChart = new Chart(ctx, graphData);
+        list_chart.push(myChart);
+        
         document.getElementById('content').innerHTML += col;
         console.log(col);
       }
