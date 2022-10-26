@@ -78,20 +78,16 @@
         }
         list_graph_data.push(graphData);
 
-        
-
         var col = `
             <div class = "col col-xl-6" id="`+uuid+`">
-
             </div>
         `
+        document.getElementById('content').innerHTML += col;
+        console.log(col);
 
         var ctx = document.getElementById('chart_' + uuid).getContext('2d');
         var myChart = new Chart(ctx, graphData);
         list_chart.push(myChart);
-        
-        document.getElementById('content').innerHTML += col;
-        console.log(col);
       }
         
       var acc = data.data[0];
