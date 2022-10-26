@@ -181,7 +181,7 @@
 
       new_graph_data.shift();
       new_graph_data.push(parseInt(gyr.valueX));
-      grData.data.datasets[0] = new_graph_data;
+      grData.data.datasets[0].data = new_graph_data;
 
       list_chart[index].update();
       //console.log(new_graph_data);
