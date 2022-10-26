@@ -33,7 +33,7 @@
   </div>
   <script>
     const list_UUID = [];
-    const list_grahp_data = [];
+    const list_graph_data = [];
     
     var url = 'wss://livedatawebsocket.herokuapp.com/ws/sensor/'
 
@@ -60,7 +60,7 @@
       var uuid = data.UUID;
       if(!list_UUID.includes(uuid)){
         list_UUID.push(uuid);
-        var grahpData = {
+        var graphData = {
           type: 'line',
           data: {
               labels: ['-5', '-4', '-3', '-2', '-1', 'Now'],
@@ -75,7 +75,7 @@
           },
           option:{}
         }
-        list_grahp_data.push(grahpData);
+        list_graph_data.push(graphData);
         var col = `
             <div class = "col col-xl-6" id="`+uuid+`">
 
@@ -166,22 +166,23 @@
       //console.log(ctx);
 
       var index = list_UUID.indexOf(uuid);
-      console.log(index + "");
-      var grData = list_grahp_data[index];
+      //console.log(index + "");
+      var grData = list_graph_data[index];
+      console.log(grData);
+
       if(grData){
         return
       }
-      //console.log(grData);
-
+      
       var myChart = new Chart(ctx, grData);
       
-      var new_grahp_data = grData.data.datasets[0].data;
-      //console.log(new_grahp_data)
+      var new_graph_data = grData.data.datasets[0].data;
+      //console.log(new_graph_data)
 
-      await new_grahp_data.shift();
-      await new_grahp_data.push(parseInt(gyr.valueX));
-      grData.data.datasets[0] = new_grahp_data;
-      //console.log(new_grahp_data);
+      await new_graph_data.shift();
+      await new_graph_data.push(parseInt(gyr.valueX));
+      grData.data.datasets[0] = new_graph_data;
+      //console.log(new_graph_data);
     }
 
   </script>
