@@ -170,10 +170,6 @@
       var grData = list_graph_data[index];
       console.log(grData);
 
-      if(grData){
-        return
-      }
-      
       var myChart = new Chart(ctx, grData);
       
       var new_graph_data = grData.data.datasets[0].data;
