@@ -46,7 +46,7 @@
 
     socket.onmessage = function (e) {
       var data = JSON.parse(e.data);
-      console.log(data);
+      //console.log(data);
       if (data.data) {
         addData(data.data);
         // increaseProgress(data.data.total, data.data.current_total);
@@ -163,22 +163,23 @@
         var myChart = new Chart(ctx, graphData);
         list_chart.push(myChart);
       }
-      
+
       draw(uuid, gyr);
       
     }
 
-    async function draw(uuid, gyr){
+    function draw(uuid, gyr){
     
       var index = list_UUID.indexOf(uuid);
-      //console.log(index + "");
+      console.log(index + "");
       var grData = list_graph_data[index];
+      console.log(grData);
       
       var new_graph_data = grData.data.datasets[0].data;
-      //console.log(new_graph_data)
+      console.log(new_graph_data)
 
-      await new_graph_data.shift();
-      await new_graph_data.push(parseInt(gyr.valueX));
+      new_graph_data.shift();
+      new_graph_data.push(parseInt(gyr.valueX));
       grData.data.datasets[0] = new_graph_data;
 
       list_chart[index].update();
