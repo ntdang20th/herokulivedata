@@ -172,19 +172,19 @@
     function draw(uuid, gyr){
     
       var index = list_UUID.indexOf(uuid);
-      console.log(index + "");
+      var chartT = list_chart[index];
+      //console.log(index + "");
       var grData = list_graph_data[index];
-      console.log(grData);
+      //console.log(grData);
       
       var new_graph_data = grData.data.datasets[0].data;
-      console.log(new_graph_data)
+      //console.log(new_graph_data)
 
       new_graph_data.shift();
       new_graph_data.push(parseInt(gyr.valueX));
       grData.data.datasets[0].data = new_graph_data;
 
-      list_chart[index].update();
-      //console.log(new_graph_data);
+      chartT.update();
     }
 
   </script>
