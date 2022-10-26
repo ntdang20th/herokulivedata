@@ -157,11 +157,11 @@
             `
       document.getElementById(uuid).innerHTML = html;  //add content
 
-      draw(uuid);
+      draw(uuid, gyr);
       
     }
 
-    async function draw(uuid){
+    async function draw(uuid, gyr){
       const ctx = document.getElementById('chart_' + uuid).getContext('2d');
       //console.log(ctx);
 
