@@ -32,6 +32,8 @@
   </div>
   <script>
     const list_UUID = [];
+    const list_grahp_data = [];
+    
     var url = 'wss://livedatawebsocket.herokuapp.com/ws/sensor/'
 
     var socket = new WebSocket(url);
@@ -57,11 +59,28 @@
       var uuid = data.UUID;
       if(!list_UUID.includes(uuid)){
         list_UUID.push(uuid);
+        var grahpData = {
+          type: 'line',
+          data: {
+              labels: ['-5', '-4', '-3', '-2', '-1', 'Now'],
+              datasets: [{
+                  label: '# of Votes',
+                  data: [12, 19, 3, 5, 2, 3],
+                  backgroundColor: [
+                      'rgba(73, 198, 230, 0.5)',
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          option:{}
+        }
+        list_grahp_data.push(grahpData);
         var col = `
             <div class = "col col-xl-6" id="`+uuid+`">
 
             </div>
         `
+
         document.getElementById('content').innerHTML += col;
         console.log(col);
       }
@@ -128,19 +147,26 @@
               </div>
 
               <div class="col-6">
-                <p>chart here</p>
+                <canvas id="chart_`+uuid+`" width="400" height="400"></canvas>
               </div>
             </div>
           </div>
-
-
         </div>
-
-
       </div>
             `
-      document.getElementById(uuid).innerHTML = html;
+      document.getElementById(uuid).innerHTML = html;  //add content
 
+
+      const ctx = document.getElementById('chart_' + uuid).getContext('2d');
+      var index = list_UUID.indexOf(uuid);
+      var grData = list_grahp_data[index];
+
+      var myChart = new Chart(ctx, grData);
+      
+      var new_grahp_data = grData.data.datasets[0].data;
+      new_grahp_data.shift();
+      new_grahp_data.push(gyr.valueX.toFixed(2));
+      grData.data.datasets[0] = new_grahp_data;
     }
 
   </script>
