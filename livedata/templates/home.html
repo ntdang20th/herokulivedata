@@ -166,8 +166,11 @@
       //console.log(ctx);
 
       var index = list_UUID.indexOf(uuid);
-      console.log(index);
+      //console.log(index);
       var grData = list_grahp_data[index];
+      if(grData){
+        return
+      }
       //console.log(grData);
 
       var myChart = new Chart(ctx, grData);
@@ -178,7 +181,7 @@
       await new_grahp_data.shift();
       await new_grahp_data.push(parseInt(gyr.valueX));
       grData.data.datasets[0] = new_grahp_data;
-      console.log(new_grahp_data);
+      //console.log(new_grahp_data);
     }
 
   </script>
