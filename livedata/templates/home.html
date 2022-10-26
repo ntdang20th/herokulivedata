@@ -173,7 +173,7 @@
     
       var index = list_UUID.indexOf(uuid);
       var chartT = list_chart[index];
-      //console.log(index + "");
+      
       var grData = list_graph_data[index];
       //console.log(grData);
       
@@ -184,6 +184,8 @@
       new_graph_data.push(parseInt(gyr.valueX));
       grData.data.datasets[0].data = new_graph_data;
 
+      console.log(new_graph_data);
+      console.log(chartT);
       chartT.update();
     }
 
