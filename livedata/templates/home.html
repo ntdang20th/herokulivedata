@@ -54,15 +54,15 @@
     }
 
     function addData(data) {
-      uuid = ${data.UUID};
+      var uuid = data.UUID;
       if(!list_UUID.includes(uuid)){
         list_UUID.push(uuid);
         var col = `
             <div class = "col col-xl-6" id="`+uuid+`">
 
             </div>
-        `;
-        document.getElementById('content').innerHTML += html;
+        `
+        document.getElementById('content').innerHTML += col;
         console.log(col);
       }
         
