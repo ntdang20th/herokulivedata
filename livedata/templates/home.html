@@ -61,23 +61,6 @@
       var uuid = data.UUID;
       if(!list_UUID.includes(uuid)){
         list_UUID.push(uuid);
-        var graphData = {
-          type: 'line',
-          data: {
-              labels: ['-5', '-4', '-3', '-2', '-1', 'Now'],
-              datasets: [{
-                  label: '# of Votes',
-                  data: [12, 19, 3, 5, 2, 3],
-                  backgroundColor: [
-                      'rgba(73, 198, 230, 0.5)',
-                  ],
-                  borderWidth: 1
-              }]
-          },
-          option:{}
-        }
-        list_graph_data.push(graphData);
-
         var col = `
             <div class = "col col-xl-6" id="`+uuid+`">
             </div>
@@ -85,9 +68,7 @@
         document.getElementById('content').innerHTML += col;
         console.log(col);
 
-        var ctx = document.getElementById('chart_' + uuid).getContext('2d');
-        var myChart = new Chart(ctx, graphData);
-        list_chart.push(myChart);
+        
       }
         
       var acc = data.data[0];
@@ -161,6 +142,28 @@
             `
       document.getElementById(uuid).innerHTML = html;  //add content
 
+      if(!list_UUID.includes(uuid)){
+        var graphData = {
+          type: 'line',
+          data: {
+              labels: ['-5', '-4', '-3', '-2', '-1', 'Now'],
+              datasets: [{
+                  label: '# of Votes',
+                  data: [12, 19, 3, 5, 2, 3],
+                  backgroundColor: [
+                      'rgba(73, 198, 230, 0.5)',
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          option:{}
+        }
+        list_graph_data.push(graphData);
+        var ctx = document.getElementById('chart_' + uuid).getContext('2d');
+        var myChart = new Chart(ctx, graphData);
+        list_chart.push(myChart);
+      }
+      
       draw(uuid, gyr);
       
     }
