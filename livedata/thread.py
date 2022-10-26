@@ -150,7 +150,7 @@ class StartSensor3(threading.Thread):
                     unit=Unit.objects.get(pk=1)
                 )
                 gyroscope_sensor = Gyroscope.objects.create(
-                    valueX=random.uniform(-1.8, -0.2),
+                    valueX=random.uniform(-200, 200),
                     valueY=random.uniform(12.1, 13),
                     valueZ=random.uniform(12.1, 13),
                     unit=Unit.objects.get(pk=2)

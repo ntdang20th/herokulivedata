@@ -159,15 +159,21 @@
 
 
       const ctx = document.getElementById('chart_' + uuid).getContext('2d');
+      console.log(ctx);
+
       var index = list_UUID.indexOf(uuid);
       var grData = list_grahp_data[index];
+      console.log(grData);
 
       var myChart = new Chart(ctx, grData);
       
       var new_grahp_data = grData.data.datasets[0].data;
+      console.log(new_grahp_data)
+
       new_grahp_data.shift();
       new_grahp_data.push(gyr.valueX.toFixed(2));
       grData.data.datasets[0] = new_grahp_data;
+      console.log(new_grahp_data);
     }
 
   </script>
