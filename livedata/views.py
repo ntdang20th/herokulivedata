@@ -41,8 +41,6 @@ from django.views.decorators.csrf import csrf_exempt
 @api_view(['POST'])
 def ResponesData(request):
     data = request.data
-    current_time = data['date']
-
     try:
         device = Device.objects.get(uuid=data['UUID'])
     except Device.DoesNotExist:
@@ -77,11 +75,8 @@ def ResponesData(request):
     )
 
     #create new rawdata
-    try:
-        date = datetime.datetime.strptime(current_time, 'YYYY-MM-DD HH:MM:ss')
-    except ValueError as err:
-        date = datetime.datetime.now()
-        print(err)
+
+    date = datetime.datetime.now()
 
     rawdata = Rawdata.objects.create(
         date=date,
